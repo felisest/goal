@@ -1,5 +1,6 @@
 package goal
 
+// Queue represents a instance of the queue data container.
 type Queue[T any] struct {
 	buff  []T
 	begin int
@@ -18,6 +19,7 @@ func grow_container(cur_cap int) int {
 	return cur_cap + cur_cap/(1<<i)
 }
 
+// MakeQueue constructs and return a new Queue.
 func MakeQueue[T any](capacity int) *Queue[T] {
 
 	return &Queue[T]{buff: make([]T, capacity), cap: capacity}
@@ -41,6 +43,7 @@ func (q *Queue[T]) resize() {
 	q.cap = new_capacity
 }
 
+// Push inserts element at the end.
 func (q *Queue[T]) Push(v T) {
 
 	if q.len >= len(q.buff) {
@@ -58,6 +61,7 @@ func (q *Queue[T]) Push(v T) {
 	q.len++
 }
 
+// Pop return the first element.
 func (q *Queue[T]) Pop() (T, bool) {
 
 	var dr T
@@ -79,10 +83,34 @@ func (q *Queue[T]) Pop() (T, bool) {
 	return v, true
 }
 
+// Erase erases all unused elements.
+func (q *Queue[T]) Erase() {
+	new_buff := make([]T, q.cap)
+
+	if q.begin >= q.end {
+		num := copy(new_buff, q.buff[q.begin:])
+		copy(new_buff[num:], q.buff[:q.end])
+	} else {
+		copy(new_buff, q.buff[:q.end])
+	}
+
+	q.buff = new_buff
+	q.begin = 0
+	q.end = q.len
+}
+
+// Clear clears the container. After this call, Len() returns zero.
+func (q *Queue[T]) Clear() {
+	new_buff := make([]T, q.cap)
+	q.buff = new_buff
+}
+
+// Len returns the number of elements.
 func (q *Queue[T]) Len() int {
 	return q.len
 }
 
+// Cap returns the capacity of container.
 func (q *Queue[T]) Cap() int {
 	return q.cap
 }
