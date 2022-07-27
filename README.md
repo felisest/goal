@@ -6,7 +6,7 @@ Package provides a fast queue and stack containers based on generics to handle m
 A Go 1.18 or later installed.
 
 ## Containers
-The container library, using generics, supports various types/
+Containers using generics to handle multiple types.
 
 * Stack
 Stack container implementation.
