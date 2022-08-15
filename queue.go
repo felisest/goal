@@ -9,16 +9,6 @@ type Queue[T any] struct {
 	cap   int
 }
 
-func grow_container(cur_cap int) int {
-
-	mnum := 512
-	i := 0
-	for ; (cur_cap > mnum<<i) && (i < 4); i++ {
-	}
-
-	return cur_cap + cur_cap/(1<<i)
-}
-
 // MakeQueue constructs and return a new Queue.
 func MakeQueue[T any](capacity int) *Queue[T] {
 
