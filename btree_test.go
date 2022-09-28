@@ -73,20 +73,20 @@ func TestBTreeFindNonexistent(t *testing.T) {
 
 func TestMassInsertFind(t *testing.T) {
 
-	max_key_value := 10000
-	max_array_len := 10000
+	const MAX_KEY_VALUE = 10000
+	const MAX_ARRAY_LEN = 10000
 
 	rand.Seed(time.Now().UnixNano())
 
-	tree, err := MakeTree(rand.Intn(max_key_value), "Root")
+	tree, err := MakeTree(rand.Intn(MAX_KEY_VALUE), "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
 
-	keys := make([]int, max_array_len)
+	keys := make([]int, MAX_ARRAY_LEN)
 
-	for i := 0; i < max_array_len; i++ {
-		keys[i] = rand.Intn(max_key_value)
+	for i := 0; i < MAX_ARRAY_LEN; i++ {
+		keys[i] = rand.Intn(MAX_KEY_VALUE)
 	}
 
 	for _, key := range keys {
@@ -112,20 +112,21 @@ func TestMassInsertFind(t *testing.T) {
 
 func TestMassInsertRemove(t *testing.T) {
 
-	max_key_value := 1000
-	max_array_len := 200000
+	const MAX_KEY_VALUE = 1000
+	const MAX_ARRAY_LEN = 200000
+	const CNT_KEYS_REMOVE = 3
 
 	rand.Seed(time.Now().UnixNano())
 
-	tree, err := MakeTree(rand.Intn(max_key_value), "Root")
+	tree, err := MakeTree(rand.Intn(MAX_KEY_VALUE), "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
 
-	keys_map := make(map[int]struct{}, max_array_len)
+	keys_map := make(map[int]struct{}, MAX_ARRAY_LEN)
 
-	for i := 0; i < max_array_len; i++ {
-		key := rand.Intn(max_key_value)
+	for i := 0; i < MAX_ARRAY_LEN; i++ {
+		key := rand.Intn(MAX_KEY_VALUE)
 		keys_map[key] = struct{}{}
 	}
 
@@ -136,9 +137,8 @@ func TestMassInsertRemove(t *testing.T) {
 	}
 
 	//Remove a few keys
-	break_cnt := 200
 	cnt := 0
-	deleted_keys := make([]int, break_cnt+1)
+	deleted_keys := make([]int, CNT_KEYS_REMOVE)
 	for key := range keys_map {
 		if key == tree.Key {
 			continue
@@ -146,7 +146,8 @@ func TestMassInsertRemove(t *testing.T) {
 		tree.Remove(key)
 		delete(keys_map, key)
 		deleted_keys[cnt] = key
-		if cnt >= break_cnt {
+		fmt.Printf("key = %d", key)
+		if cnt >= CNT_KEYS_REMOVE-1 {
 			break
 		}
 		cnt++
