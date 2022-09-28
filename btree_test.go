@@ -9,7 +9,7 @@ import (
 
 func TestBTreeRootInsert(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -29,7 +29,7 @@ func TestBTreeRootInsert(t *testing.T) {
 
 func TestBTreeFind(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -56,7 +56,7 @@ func TestBTreeFind(t *testing.T) {
 
 func TestBTreeFindNonexistent(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -78,7 +78,7 @@ func TestMassInsertFind(t *testing.T) {
 
 	rand.Seed(time.Now().UnixNano())
 
-	tree, err := NewTree(rand.Intn(max_key_value), "Root")
+	tree, err := MakeTree(rand.Intn(max_key_value), "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -117,7 +117,7 @@ func TestMassInsertRemove(t *testing.T) {
 
 	rand.Seed(time.Now().UnixNano())
 
-	tree, err := NewTree(rand.Intn(max_key_value), "Root")
+	tree, err := MakeTree(rand.Intn(max_key_value), "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -173,7 +173,7 @@ func TestMassInsertRemove(t *testing.T) {
 
 func TestBTreeRemoveLRNil(t *testing.T) {
 
-	tree, err := NewTree(20, "Root")
+	tree, err := MakeTree(20, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -199,7 +199,7 @@ func TestBTreeRemoveLRNil(t *testing.T) {
 
 func TestBTreeRemoveLeftLeaf(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -218,7 +218,7 @@ func TestBTreeRemoveLeftLeaf(t *testing.T) {
 		t.Errorf("'left leaf' error key: %d is not exists", 2)
 	}
 
-	tree, err = NewTree(10, "Root")
+	tree, err = MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -241,7 +241,7 @@ func TestBTreeRemoveLeftLeaf(t *testing.T) {
 
 func TestBTreeRemoveRightLeaf(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -261,7 +261,7 @@ func TestBTreeRemoveRightLeaf(t *testing.T) {
 		t.Errorf("'right leaf' error key: %d is not exists", 7)
 	}
 
-	tree, err = NewTree(10, "Root")
+	tree, err = MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -284,7 +284,7 @@ func TestBTreeRemoveRightLeaf(t *testing.T) {
 
 func TestBTreeRemoveBothLeafs(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -308,7 +308,7 @@ func TestBTreeRemoveBothLeafs(t *testing.T) {
 		t.Errorf("'both leafs' error key: %d is not exists", 7)
 	}
 
-	tree, err = NewTree(10, "Root")
+	tree, err = MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -335,7 +335,7 @@ func TestBTreeRemoveBothLeafs(t *testing.T) {
 
 func TestBTreeRemoveBothLeafsRightLeft(t *testing.T) {
 
-	tree, err := NewTree(10, "Root")
+	tree, err := MakeTree(10, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -384,7 +384,7 @@ func TestBTreeRemoveBothLeafsRightLeft(t *testing.T) {
 		t.Errorf("'both leafs' error key: %d is not exists", 1)
 	}
 
-	tree, err = NewTree(20, "Root")
+	tree, err = MakeTree(20, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}
@@ -427,7 +427,7 @@ func TestBTreeRemoveBothLeafsRightLeft(t *testing.T) {
 
 func TestBTreeRemoveCustom(t *testing.T) {
 
-	tree, err := NewTree(723, "Root")
+	tree, err := MakeTree(723, "Root")
 	if err != nil {
 		t.Errorf("Can`t create new tree")
 	}

@@ -18,4 +18,4 @@ Queue container implementation.
 Double-ended queue container implementation.
 
 * ### Binary tree
-  Binary tree data structure implementation.
+Binary tree data structure implementation.

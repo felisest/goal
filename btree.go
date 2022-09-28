@@ -13,11 +13,13 @@ type Tree[K constraints.Ordered, V any] struct {
 	parent *Tree[K, V]
 }
 
-func NewTree[K constraints.Ordered, V any](k K, v V) (*Tree[K, V], error) {
+// MakeTree constructs and return a new Binary Tree.
+func MakeTree[K constraints.Ordered, V any](k K, v V) (*Tree[K, V], error) {
 
 	return &Tree[K, V]{parent: nil, Key: k, Value: v}, nil
 }
 
+// Inserts an element into tree
 func (t *Tree[K, V]) Insert(key K, value V) {
 
 	if t.Key == key {
@@ -41,6 +43,7 @@ func (t *Tree[K, V]) Insert(key K, value V) {
 	}
 }
 
+// Finds an element in the tree by key
 func (t *Tree[K, V]) Find(key K) (V, bool) {
 
 	target_tree := find(key, t)
@@ -54,6 +57,7 @@ func (t *Tree[K, V]) Find(key K) (V, bool) {
 	}
 }
 
+// Removes an element from the tree by key
 func (t *Tree[K, V]) Remove(key K) bool {
 
 	remove_element := find(key, t)
